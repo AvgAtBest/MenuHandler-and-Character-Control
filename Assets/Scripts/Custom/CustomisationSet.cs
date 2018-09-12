@@ -277,7 +277,7 @@ public class CustomisationSet : MonoBehaviour
         //GUI Box or Lable on the left of the screen with the contence Skin
         GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Skin");
         //GUI button on the left of the screen with the contence >
-        if (GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Skin", 1);
             //when pressed the button will run SetTexture and grab the Skin Material and move the texture index in the direction  1
@@ -295,7 +295,7 @@ public class CustomisationSet : MonoBehaviour
         //GUI Box or Lable on the left of the screen with the contence Hair
         GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Hair");
         //GUI button on the left of the screen with the contence >
-        if (GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Hair", 1);
             //when pressed the button will run SetTexture and grab the Hair Material and move the texture index in the direction  1
@@ -313,7 +313,7 @@ public class CustomisationSet : MonoBehaviour
         //GUI Box or Lable on the left of the screen with the contence Mouth
         GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Mouth");
         //GUI button on the left of the screen with the contence >
-        if (GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Mouth", 1);
             //when pressed the button will run SetTexture and grab the Mouth Material and move the texture index in the direction  1
@@ -331,7 +331,7 @@ public class CustomisationSet : MonoBehaviour
         //GUI Box or Lable on the left of the screen with the contence Eyes
         GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Eyes");
         //GUI button on the left of the screen with the contence >
-        if (GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Eyes", 1);
             //when pressed the button will run SetTexture and grab the Eyes Material and move the texture index in the direction  1
@@ -349,7 +349,7 @@ public class CustomisationSet : MonoBehaviour
         //GUI Box or Lable on the left of the screen with the contence Clothes
         GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Clothes");
         //GUI button on the left of the screen with the contence >
-        if (GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Clothes", 1);
             //when pressed the button will run SetTexture and grab the Clothes Material and move the texture index in the direction  1
@@ -367,7 +367,7 @@ public class CustomisationSet : MonoBehaviour
         //GUI Box or Lable on the left of the screen with the contence Armour
         GUI.Box(new Rect(0.75f * scrW, scrH + i * (0.5f * scrH), 1f * scrW, 0.5f * scrH), "Armour");
         //GUI button on the left of the screen with the contence >
-        if (GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(1.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             SetTexture("Armour", 1);
             //when pressed the button will run SetTexture and grab the Armour Material and move the texture index in the direction  1
