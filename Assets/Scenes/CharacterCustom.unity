@@ -259,6 +259,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5902a16b538134d95749018482478a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skin: []
+  hair: []
+  mouth: []
+  eyes: []
+  clothes: []
+  armour: []
+  skinIndex: 0
+  hairIndex: 0
+  mouthIndex: 0
+  eyesIndex: 0
+  clothesIndex: 0
+  armourIndex: 0
+  character: {fileID: 0}
+  skinMax: 4
+  hairMax: 5
+  mouthMax: 3
+  eyesMax: 4
+  clothesMax: 11
+  armourMax: 11
+  charName: Adventurer
+  str: 0
+  dex: 0
+  charisma: 0
+  con: 0
+  intel: 0
+  wis: 0
+  points: 10
+  charClass: 0
 --- !u!4 &1991458718
 Transform:
   m_ObjectHideFlags: 0

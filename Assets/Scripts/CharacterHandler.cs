@@ -35,6 +35,11 @@ public class CharacterHandler : MonoBehaviour
     //render texture for the mini map that we need to connect to a camera
     public RenderTexture miniMap;
     #endregion
+    #region Stats
+    [Header("Stats")]
+    //base stats for player
+    public int str;
+    public int dex, charisma, con, intel, wis;
     #endregion
 
     void Start ()
@@ -143,3 +148,4 @@ public class CharacterHandler : MonoBehaviour
         controller.enabled = false;
     }
 }
+#endregion
