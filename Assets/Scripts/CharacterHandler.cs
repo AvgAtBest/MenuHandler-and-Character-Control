@@ -42,7 +42,7 @@ public class CharacterHandler : MonoBehaviour
     public int dex, charisma, con, intel, wis;
     #endregion
 
-    void Start ()
+    void Start()
     {
         //set current health to max
         maxHealth = 100f;
@@ -60,7 +60,7 @@ public class CharacterHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         //if our current experience is greater or equal to the maximum experience
         if (curExp >= maxExp)
@@ -111,16 +111,16 @@ public class CharacterHandler : MonoBehaviour
         GUI.Box(new Rect(6 * scrW, 0.25f * scrH, 4 * scrW, 0.5f * scrH), "");
         //GUI Box for current health that moves in same place as the background bar
         //current Health divided by the posistion on screen and timesed by the total max health
-        GUI.Box(new Rect(6 * scrW, 0.25f * scrH, curHealth*(4 * scrW)/maxHealth, 0.5f * scrH), "", healthColor);
+        GUI.Box(new Rect(6 * scrW, 0.25f * scrH, curHealth * (4 * scrW) / maxHealth, 0.5f * scrH), "", healthColor);
         //GUI Box on screen for the experience background
         GUI.Box(new Rect(6 * scrW, 0.75f * scrH, 4 * scrW, 0.25f * scrH), "");
         //GUI Box for current experience that moves in same place as the background bar
         //current experience divided by the posistion on screen and timesed by the total max experience
-        GUI.Box(new Rect(6 * scrW, 0.75f * scrH, curExp*(4 * scrW)/maxExp, 0.25f * scrH), "");
+        GUI.Box(new Rect(6 * scrW, 0.75f * scrH, curExp * (4 * scrW) / maxExp, 0.25f * scrH), "");
         //GUI Draw Texture on the screen that has the mini map render texture attached
         GUI.DrawTexture(new Rect(13.75f * scrW, 0.25f * scrH, 2 * scrW, 2 * scrH), miniMap);
     }
-    public void TakeDamage (int damage)
+    public void TakeDamage(int damage)
     {
         curHealth -= damage;
         if (curHealth <= 0 && !isDead)
@@ -147,5 +147,5 @@ public class CharacterHandler : MonoBehaviour
         isDead = true;
         controller.enabled = false;
     }
+    #endregion
 }
-#endregion
