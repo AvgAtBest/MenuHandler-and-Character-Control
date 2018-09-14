@@ -8,7 +8,7 @@ public class CharacterMovement : MonoBehaviour
     [Space(30)]
     [Header("Mini Header")]
     [Range(0f, 100f)]
-    public float speed = 10.0f;
+
     //How fast the character travels when moving. Set to 6.0f
     public float jumpSpeed = 8.0f;
     //Jump speed of character upon jumping, set to 8.0f
@@ -20,6 +20,9 @@ public class CharacterMovement : MonoBehaviour
     //Referencing the character controller in Unity
     public float sprintSpeed = 15f;
     public float crouchSpeed = 5f;
+    public float speed = 10.0f;
+    public float stamina;
+    public float staminaMax = 100f;
 
     public enum State
     {
@@ -44,11 +47,11 @@ public class CharacterMovement : MonoBehaviour
     float rotationY = 0f;
     //Default float value for mouse invertion.
     #endregion
-    private void Start ()
+    private void Start()
     {
         controller = GetComponent<CharacterController>();
         //Obtains the CharacterController Game Component on scene start for the first time, does not continously try and obtain after void start
-	}
+    }
 
     void FixedUpdate()
     {
@@ -58,30 +61,30 @@ public class CharacterMovement : MonoBehaviour
             moveDirection = new Vector3(Input.GetAxis("Horizontal"),
                 //Obtains characters x coordinates. Upon character input, updates character coords on x axis
                 0, Input.GetAxis("Vertical"));//Does not affect Y axis, character stays grounded
-            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection = transform.TransformDirection(moveDirection * speed);
             //Moves Character on x axis
 
-            moveDirection *= speed;
+
+            //bool isRunning = Input.GetKey(KeyCode.LeftShift);
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 speed = sprintSpeed;
             }
-
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 speed = 10f;
             }
-
-            if (Input.GetKey(KeyCode.C))
+            bool isCrouching = Input.GetKey(KeyCode.C);
+            if (isCrouching)
             {
                 speed = crouchSpeed;
             }
 
-            if (Input.GetKeyUp(KeyCode.C))
+            if (!isCrouching)
             {
                 speed = 10f;
             }
-                //When moving, moves character at speed of 6.0f
+            //When moving, moves character at speed of 6.0f
             if (Input.GetButton("Jump"))
             {
                 moveDirection.y = jumpSpeed;

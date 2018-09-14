@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CustomisationSet : MonoBehaviour
 {
@@ -33,13 +34,14 @@ public class CustomisationSet : MonoBehaviour
     //name of our character that the user is making
     [Header("Stats")]
     //base stats for player
-    public int str;
-    public int dex, charisma, con, intel, wis;
+    public int str = 1;
+    public int dex = 1, charisma = 1, con = 1, intel = 1, wis = 1;
     //points in which we use to increase our stats
     public int points = 10;
     public CharacterClass charClass = CharacterClass.Barbarian;
+    public string[] selectedClass = new string[8];
+    public int selectedIndex = 0;
     #endregion
-
     #region Start
     //in start we need to set up the following
     private void Start()
@@ -95,6 +97,7 @@ public class CustomisationSet : MonoBehaviour
             //add our temp texture that we just found to the armour List
         }
         #endregion
+        //connect and find the SkinnedMeshRenderer thats in the scene to the variable we made for Renderer
         character = GameObject.Find("Mesh").GetComponent<SkinnedMeshRenderer>();
         SetTexture("Skin", 0);
         SetTexture("Hair", 0);
@@ -105,8 +108,6 @@ public class CustomisationSet : MonoBehaviour
     }
 
     #endregion
-
-    //connect and find the SkinnedMeshRenderer thats in the scene to the variable we made for Renderer
     #region do this after making the function SetTexture
     #endregion
     #region SetTexture
@@ -240,7 +241,6 @@ public class CustomisationSet : MonoBehaviour
         #endregion
     }
     #endregion
-
     #region Save
     //Function called Save this will allow us to save our indexes to PlayerPrefs
     void Save()
@@ -256,7 +256,6 @@ public class CustomisationSet : MonoBehaviour
         PlayerPrefs.SetString("CharacterName", charName);
     }
     #endregion
-
     #region OnGUI
     //Function for our GUI elements
     private void OnGUI()
@@ -378,18 +377,148 @@ public class CustomisationSet : MonoBehaviour
         #region Random Reset
         //create 2 buttons one Random and one Reset
         //Random will feed a random amount to the direction 
+        if(GUI.Button(new Rect(0.25f* scrW, scrH +i * (0.5f*scrH), scrW, 0.5f * scrH), "Random"))
+        {
+            SetTexture("Skin", Random.Range(0, skinMax - 1));
+            SetTexture("Hair", Random.Range(0, hairMax - 1));
+            SetTexture("Mouth", Random.Range(0, mouthMax - 1));
+            SetTexture("Eyes", Random.Range(0, eyesMax - 1));
+            SetTexture("Clothes", Random.Range(0, clothesMax - 1));
+            SetTexture("Armour", Random.Range(0, armourMax - 1));
+        }
         //reset will set all to 0 both use SetTexture
+        if(GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), scrW, 0.5f * scrH), "Reset"))
+        {
+            SetTexture("Skin", skinIndex = 0);
+            SetTexture("Hair", hairIndex = 0);
+            SetTexture("Mouth", mouthIndex = 0);
+            SetTexture("Eyes", eyesIndex = 0);
+            SetTexture("Clothes", clothesIndex = 0);
+            SetTexture("Armour", armourIndex = 0);
+        }
         //move down the screen with the int using ++ each grouping of GUI elements are moved using this
+        i++;
         #endregion
         #region Character Name and Save & Play
         //name of our character equals a GUI TextField that holds our character name and limit of characters
+        charName = GUI.TextField(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), charName, 16);
         //move down the screen with the int using ++ each grouping of GUI elements are moved using this
-
+        i++;
         //GUI Button called Save and Play
-        //this button will run the save function and also load into the game level
+        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH),"Save & Play"))
+        {
+            Save();
+            SceneManager.LoadScene(2);
+            //this button will run the save function and also load into the game level
+        }
+        #endregion
+        #region Stat Distribution
+        i = 0;
+        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2* scrW, 0.5f * scrH), "Class");
+        i++;
+        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2* scrW, 0.5f * scrH), selectedClass[selectedIndex]);
+        
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        {
+            selectedIndex--;
+            if(selectedIndex < 0)
+            {
+                selectedIndex = selectedClass.Length - 1;
+            }
+            ChooseClass(selectedIndex);
+        }
+        if (GUI.Button(new Rect(5.75f * scrW, scrH + i * (0.5f * scrH), 0.5f* scrW, 0.5f * scrH), ">"))
+        {
+            selectedIndex++;
+            if (selectedIndex > selectedClass.Length - 1)
+            {
+                selectedIndex = 0;
+            }
+            ChooseClass(selectedIndex);
+
+        }
         #endregion
     }
     #endregion
+    void ChooseClass(int className)
+    {
+        switch (className)
+        {
+            case 0:
+                str = 15;
+                dex = 10;
+                con = 10;
+                wis = 10;
+                intel = 10;
+                charisma = 5;
+                charClass = CharacterClass.Barbarian;
+                break;
+            case 1:
+                str = 15;
+                dex = 10;
+                con = 10;
+                wis = 10;
+                intel = 10;
+                charisma = 5;
+                charClass = CharacterClass.Bard;
+                break;
+            case 2:
+                str = 15;
+                dex = 10;
+                con = 10;
+                wis = 10;
+                intel = 10;
+                charisma = 5;
+                charClass = CharacterClass.Druid;
+                break;
+            case 3:
+                str = 15;
+                dex = 10;
+                con = 10;
+                wis = 10;
+                intel = 10;
+                charisma = 5;
+                charClass = CharacterClass.Monk;
+                break;
+            case 4:
+                str = 15;
+                dex = 10;
+                con = 10;
+                wis = 10;
+                intel = 10;
+                charisma = 5;
+                charClass = CharacterClass.Paladin;
+                break;
+            case 5:
+                str = 15;
+                dex = 10;
+                con = 10;
+                wis = 10;
+                intel = 10;
+                charisma = 5;
+                charClass = CharacterClass.Ranger;
+                break;
+            case 6:
+                str = 15;
+                dex = 10;
+                con = 10;
+                wis = 10;
+                intel = 10;
+                charisma = 5;
+                charClass = CharacterClass.Sorcerer;
+                break;
+            case 7:
+                str = 15;
+                dex = 10;
+                con = 10;
+                wis = 10;
+                intel = 10;
+                charisma = 5;
+                charClass = CharacterClass.Warlock;
+                break;
+        }
+    }
+    #region CharacterClass
     public enum CharacterClass
     {
         Barbarian,
@@ -401,4 +530,5 @@ public class CustomisationSet : MonoBehaviour
         Sorcerer,
         Warlock
     }
+    #endregion
 }
