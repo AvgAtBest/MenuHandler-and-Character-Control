@@ -34,6 +34,9 @@ public class CustomisationSet : MonoBehaviour
     //name of our character that the user is making
     [Header("Stats")]
     //base stats for player
+    public string[] statArray = new string[6];
+    public int[] stats = new int[6];
+    public int[] tempStats = new int[6];
     public int str = 1;
     public int dex = 1, charisma = 1, con = 1, intel = 1, wis = 1;
     //points in which we use to increase our stats
@@ -97,6 +100,7 @@ public class CustomisationSet : MonoBehaviour
             //add our temp texture that we just found to the armour List
         }
         #endregion
+        #region Skin Mesh Rendered
         //connect and find the SkinnedMeshRenderer thats in the scene to the variable we made for Renderer
         character = GameObject.Find("Mesh").GetComponent<SkinnedMeshRenderer>();
         SetTexture("Skin", 0);
@@ -105,6 +109,13 @@ public class CustomisationSet : MonoBehaviour
         SetTexture("Eyes", 0);
         SetTexture("Clothes", 0);
         SetTexture("Armour", 0);
+        #endregion
+        #region Stat Array
+        statArray = new string[] { "Strength", "Dexterity", "Constitution", "Wisdom", "Intelligence", "Charism" };
+        selectedClass = new string[] { "Barbarian", "Bard", "Druid", "Monk", "Paladin", "Ranger", "Sorcerer", "Warlock" };
+        ChooseClass(selectedIndex);
+
+        #endregion
     }
 
     #endregion
@@ -377,7 +388,7 @@ public class CustomisationSet : MonoBehaviour
         #region Random Reset
         //create 2 buttons one Random and one Reset
         //Random will feed a random amount to the direction 
-        if(GUI.Button(new Rect(0.25f* scrW, scrH +i * (0.5f*scrH), scrW, 0.5f * scrH), "Random"))
+        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), scrW, 0.5f * scrH), "Random"))
         {
             SetTexture("Skin", Random.Range(0, skinMax - 1));
             SetTexture("Hair", Random.Range(0, hairMax - 1));
@@ -387,7 +398,7 @@ public class CustomisationSet : MonoBehaviour
             SetTexture("Armour", Random.Range(0, armourMax - 1));
         }
         //reset will set all to 0 both use SetTexture
-        if(GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), scrW, 0.5f * scrH), "Reset"))
+        if (GUI.Button(new Rect(1.25f * scrW, scrH + i * (0.5f * scrH), scrW, 0.5f * scrH), "Reset"))
         {
             SetTexture("Skin", skinIndex = 0);
             SetTexture("Hair", hairIndex = 0);
@@ -405,7 +416,7 @@ public class CustomisationSet : MonoBehaviour
         //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         i++;
         //GUI Button called Save and Play
-        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH),"Save & Play"))
+        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Save & Play"))
         {
             Save();
             SceneManager.LoadScene(2);
@@ -414,20 +425,20 @@ public class CustomisationSet : MonoBehaviour
         #endregion
         #region Stat Distribution
         i = 0;
-        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2* scrW, 0.5f * scrH), "Class");
+        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Class");
         i++;
-        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2* scrW, 0.5f * scrH), selectedClass[selectedIndex]);
-        
+        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), selectedClass[selectedIndex]);
+
         if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
         {
             selectedIndex--;
-            if(selectedIndex < 0)
+            if (selectedIndex < 0)
             {
                 selectedIndex = selectedClass.Length - 1;
             }
             ChooseClass(selectedIndex);
         }
-        if (GUI.Button(new Rect(5.75f * scrW, scrH + i * (0.5f * scrH), 0.5f* scrW, 0.5f * scrH), ">"))
+        if (GUI.Button(new Rect(5.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
         {
             selectedIndex++;
             if (selectedIndex > selectedClass.Length - 1)
@@ -437,6 +448,28 @@ public class CustomisationSet : MonoBehaviour
             ChooseClass(selectedIndex);
 
         }
+        GUI.Box(new Rect(3.75f * scrW, 2f * scrH, 2f * scrW, 0.5f * scrH), "Points: " + points);
+        for (int s = 0; s < 6; s++)
+        {
+            if (points > 0)
+            {
+                if (GUI.Button(new Rect(5.75f * scrW, 2.5f * scrH + s * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "+"))
+                {
+                    points--;
+                    tempStats[s]++;
+                }
+            }
+            GUI.Box(new Rect(3.75f * scrW, 2.5f * scrH + s * (0.5f * scrH), 2f * scrW, 0.5f * scrH), statArray[s] + ": " + (stats[s] + tempStats[s]));
+            if (points < 10 && tempStats[s] > 0)
+            {
+                if (GUI.Button(new Rect(3.25f * scrW, 2.5f * scrH + s * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "-"))
+                {
+                    points++;
+                    tempStats[s]--;
+
+                }
+            }
+        }
         #endregion
     }
     #endregion
@@ -445,75 +478,75 @@ public class CustomisationSet : MonoBehaviour
         switch (className)
         {
             case 0:
-                str = 15;
-                dex = 10;
-                con = 10;
-                wis = 10;
-                intel = 10;
-                charisma = 5;
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 5;
                 charClass = CharacterClass.Barbarian;
                 break;
             case 1:
-                str = 15;
-                dex = 10;
-                con = 10;
-                wis = 10;
-                intel = 10;
-                charisma = 5;
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 5;
                 charClass = CharacterClass.Bard;
                 break;
             case 2:
-                str = 15;
-                dex = 10;
-                con = 10;
-                wis = 10;
-                intel = 10;
-                charisma = 5;
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 5;
                 charClass = CharacterClass.Druid;
                 break;
             case 3:
-                str = 15;
-                dex = 10;
-                con = 10;
-                wis = 10;
-                intel = 10;
-                charisma = 5;
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 5;
                 charClass = CharacterClass.Monk;
                 break;
             case 4:
-                str = 15;
-                dex = 10;
-                con = 10;
-                wis = 10;
-                intel = 10;
-                charisma = 5;
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 5;
                 charClass = CharacterClass.Paladin;
                 break;
             case 5:
-                str = 15;
-                dex = 10;
-                con = 10;
-                wis = 10;
-                intel = 10;
-                charisma = 5;
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 5;
                 charClass = CharacterClass.Ranger;
                 break;
             case 6:
-                str = 15;
-                dex = 10;
-                con = 10;
-                wis = 10;
-                intel = 10;
-                charisma = 5;
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 5;
                 charClass = CharacterClass.Sorcerer;
                 break;
             case 7:
-                str = 15;
-                dex = 10;
-                con = 10;
-                wis = 10;
-                intel = 10;
-                charisma = 5;
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 5;
                 charClass = CharacterClass.Warlock;
                 break;
         }
