@@ -265,6 +265,8 @@ public class CustomisationSet : MonoBehaviour
         PlayerPrefs.SetInt("ArmourIndex", armourIndex);
         //SetString CharacterName
         PlayerPrefs.SetString("CharacterName", charName);
+        PlayerPrefs.SetInt("Class", selectedIndex);
+        PlayerPrefs.SetInt("Points", tempStats[points]);
     }
     #endregion
     #region OnGUI
