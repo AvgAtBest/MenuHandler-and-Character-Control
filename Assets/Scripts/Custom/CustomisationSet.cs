@@ -49,6 +49,8 @@ public class CustomisationSet : MonoBehaviour
     //in start we need to set up the following
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         #region for loop to pull textures from file
         //for loop looping from 0 to less than the max amount of skin textures we need
         for (int i = 0; i < skinMax; i++)
@@ -265,8 +267,12 @@ public class CustomisationSet : MonoBehaviour
         PlayerPrefs.SetInt("ArmourIndex", armourIndex);
         //SetString CharacterName
         PlayerPrefs.SetString("CharacterName", charName);
-        PlayerPrefs.SetInt("Class", selectedIndex);
-        PlayerPrefs.SetInt("Points", tempStats[points]);
+        PlayerPrefs.SetString("CharacterClass", selectedClass[selectedIndex]);
+
+        for (int i = 0; i < stats.Length; i++)
+        {
+            PlayerPrefs.SetInt(statArray[i], stats[i]);
+        }
     }
     #endregion
     #region OnGUI
