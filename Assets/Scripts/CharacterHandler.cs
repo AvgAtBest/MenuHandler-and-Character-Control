@@ -11,6 +11,9 @@ public class CharacterHandler : MonoBehaviour
     public bool alive;
     //connection to players character controller
     public CharacterController controller;
+    public int pDamage = 25;
+    public Enemy enemyH;
+    private GameObject enemy;
     #endregion
     [Header("Health")]
     #region Health
@@ -26,9 +29,9 @@ public class CharacterHandler : MonoBehaviour
     [Header("Levels and Exp")]
     #region Level and Exp
     //players current level
-    public int level;
+    public int bLevel;
     //max and min experience
-    public int maxExp, curExp;
+    public int maxExp, curExp, baseExp;
     #endregion
     [Header("Camera Connection")]
     #region MiniMap
@@ -38,8 +41,9 @@ public class CharacterHandler : MonoBehaviour
     #region Stats
     [Header("Stats")]
     //base stats for player
-    public int str;
-    public int dex, charisma, con, intel, wis;
+    public string[] statArray = new string[6];
+    public int[] stats = new int[6];
+    public CharacterClass characterClass;
     #endregion
 
     void Start()
@@ -50,12 +54,22 @@ public class CharacterHandler : MonoBehaviour
 
         alive = true;
         //make sure player is alive
-
+        //baseExp = 0;
+        //curExp = baseExp;
         maxExp = 60;
         //max exp starts at 60
+        bLevel = 1;
 
         controller = this.GetComponent<CharacterController>();
         //connect the Character Controller to the controller variable
+
+        statArray = new string[] { "Strength", "Dexterity", "Constitution", "Wisdom", "Intelligence", "Charism" };
+        for (int i = 0; i < statArray.Length; i++)
+        {
+            stats[i] = PlayerPrefs.GetInt(statArray[i], 10);
+        }
+        characterClass = (CharacterClass)System.Enum.Parse(typeof(CharacterClass), PlayerPrefs.GetString("CharacterClass", "Barbarian"));
+        //Sets characterClass from the characterClass enum, gets the "CharacterClas" save file and and sets the class listed in characterClass. If it doesn't, it sets the default class as "Barbarian"
 
     }
 
@@ -67,7 +81,7 @@ public class CharacterHandler : MonoBehaviour
         {
             curExp -= maxExp;
             //then the current experience is equal to our experience minus the maximum amount of experience
-            level++;
+            bLevel++;
             //our level goes up by one
             maxExp += 50;
             //the maximum amount of experience is increased by 50
@@ -120,6 +134,17 @@ public class CharacterHandler : MonoBehaviour
         //GUI Draw Texture on the screen that has the mini map render texture attached
         GUI.DrawTexture(new Rect(13.75f * scrW, 0.25f * scrH, 2 * scrW, 2 * scrH), miniMap);
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            enemy = other.gameObject;
+            enemyH = GetComponent<Enemy>();
+            enemyH.TakeDamage(pDamage);
+
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         curHealth -= damage;

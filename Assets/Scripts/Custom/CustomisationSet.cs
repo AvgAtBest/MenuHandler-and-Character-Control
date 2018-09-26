@@ -37,8 +37,6 @@ public class CustomisationSet : MonoBehaviour
     public string[] statArray = new string[6];
     public int[] stats = new int[6];
     public int[] tempStats = new int[6];
-    public int str = 1;
-    public int dex = 1, charisma = 1, con = 1, intel = 1, wis = 1;
     //points in which we use to increase our stats
     public int points = 10;
     public CharacterClass charClass = CharacterClass.Barbarian;
@@ -121,8 +119,7 @@ public class CustomisationSet : MonoBehaviour
     }
 
     #endregion
-    #region do this after making the function SetTexture
-    #endregion
+
     #region SetTexture
     void SetTexture(string type, int dir)
     {
@@ -267,7 +264,7 @@ public class CustomisationSet : MonoBehaviour
         PlayerPrefs.SetInt("ArmourIndex", armourIndex);
         //SetString CharacterName
         PlayerPrefs.SetString("CharacterName", charName);
-        PlayerPrefs.SetString("CharacterClass", selectedClass[selectedIndex]);
+        PlayerPrefs.SetString("CharacterClass",charClass.ToString());
 
         for (int i = 0; i < stats.Length; i++)
         {
@@ -559,7 +556,9 @@ public class CustomisationSet : MonoBehaviour
                 break;
         }
     }
-    #region CharacterClass
+   
+}
+ #region CharacterClass
     public enum CharacterClass
     {
         Barbarian,
@@ -572,4 +571,3 @@ public class CustomisationSet : MonoBehaviour
         Warlock
     }
     #endregion
-}

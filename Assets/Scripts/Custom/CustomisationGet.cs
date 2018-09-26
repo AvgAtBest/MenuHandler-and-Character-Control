@@ -33,6 +33,8 @@ public class CustomisationGet : MonoBehaviour
         SetTexture("Armour", PlayerPrefs.GetInt("ArmourIndex"));
         SetTexture("Clothes", PlayerPrefs.GetInt("ClothesIndex"));
         gameObject.name = PlayerPrefs.GetString("CharacterName");
+        
+        
     }
     #region SetTexture Func
     //Create a function that is called SetTexture it should contain a string and int
@@ -89,7 +91,7 @@ public class CustomisationGet : MonoBehaviour
         //Material array is equal to our characters material list
         //our material arrays current material index's main texture is equal to our texture arrays current index
         //our characters materials are equal to the material array
-
+        #endregion 
     }
-    #endregion
+
 }
