@@ -11,9 +11,9 @@ public class CharacterHandler : MonoBehaviour
     public bool alive;
     //connection to players character controller
     public CharacterController controller;
-    public int pDamage = 25;
     public Enemy enemyH;
-    private GameObject enemy;
+    private GameObject enemyCap;
+    private Transform enemy;
     #endregion
     [Header("Health")]
     #region Health
@@ -45,7 +45,14 @@ public class CharacterHandler : MonoBehaviour
     public int[] stats = new int[6];
     public CharacterClass characterClass;
     #endregion
-
+    #region Combat
+    [Header("Attack")]
+    public float timeBetweenAttacks = 1.5f;
+    public int pDamage = 40;
+    public float distToTarget = 5f;
+    private float timer;
+    public float attackRadius = 4f;
+    #endregion
     void Start()
     {
         //set current health to max
@@ -62,7 +69,9 @@ public class CharacterHandler : MonoBehaviour
 
         controller = this.GetComponent<CharacterController>();
         //connect the Character Controller to the controller variable
-
+        enemyCap = GameObject.FindGameObjectWithTag("Enemy");
+        enemyH = enemyCap.GetComponent<Enemy>();
+        enemy = enemyCap.GetComponent<Transform>();
         statArray = new string[] { "Strength", "Dexterity", "Constitution", "Wisdom", "Intelligence", "Charism" };
         for (int i = 0; i < statArray.Length; i++)
         {
@@ -89,6 +98,16 @@ public class CharacterHandler : MonoBehaviour
         if (curHealth != maxHealth && !isRegeneratingHealth)
         {
             StartCoroutine(RegenHealth());
+        }
+        timer += Time.deltaTime;
+        distToTarget = Vector3.Distance(transform.position, enemy.position);
+        if (curHealth > 0)
+        {
+            if (distToTarget < attackRadius && timer >= timeBetweenAttacks && enemyH.maxHealth > 0)
+            {
+                Attack();
+            }
+
         }
     }
     private void LateUpdate()
@@ -136,19 +155,31 @@ public class CharacterHandler : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
+        other.gameObject.GetComponent<Enemy>();
         if (other.gameObject.tag == "Enemy")
         {
-            enemy = other.gameObject;
-            enemyH = GetComponent<Enemy>();
-            enemyH.TakeDamage(pDamage);
-
+            //enemy = other.gameObject;
+            Attack();
         }
     }
 
+    public void Attack()
+    {
+        timer = 0f;
+        enemyH.TakeDamage(pDamage);
+        if (enemyH.maxHealth < 0)
+        {
+            GainEXP();
+        }
+    }
+    public void GainEXP()
+    {
+        curExp += 20;
+    }
     public void TakeDamage(int damage)
     {
         curHealth -= damage;
-        if (curHealth <= 0 && !isDead)
+        if (curHealth <= 0) //&& !isDead)
         {
             Dead();
         }

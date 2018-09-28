@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public float timeBetweenAttacks = 2.5f;
     public int damage = 20;
     public float attackRadius = 4f;
-    public float curHealth, maxHealth;
+    public float maxHealth;
     public CharacterHandler pHealth;
     public CharacterController controller;
     public float distToTarget = 5f;
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         controller = playerCap.GetComponent<CharacterController>();
         agent = GetComponent<NavMeshAgent>();
         maxHealth = 100f;
-        curHealth = maxHealth;
+
         //eRigidBody = GetComponent<RigidBody>();
     }
 
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == playerCap)
+        if (other.gameObject.tag == "Player")
         {
             Attack();
         }
@@ -60,8 +60,8 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        curHealth -= damage;
-        if (curHealth <= 0)
+        maxHealth -= damage;
+        if (maxHealth <= 0)
         {
             Dead();
         }

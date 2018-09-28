@@ -15,6 +15,7 @@ TagManager:
   - Checkpoint
   - SpawnPoint
   - ResumeButton
+  - Enemy
   layers:
   - Default
   - TransparentFX
