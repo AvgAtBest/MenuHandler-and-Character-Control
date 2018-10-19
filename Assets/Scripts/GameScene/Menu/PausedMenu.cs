@@ -20,7 +20,7 @@ public class PausedMenu : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject resume;
     //public GameObject playerUI;
-    public bool paused;
+    public static bool paused;
     //public GUIStyle healthBar;
     //public GUIStyle healthColor;
     public Slider volumeSlider, brightnessSlider, ambientSlider;
@@ -39,8 +39,8 @@ public class PausedMenu : MonoBehaviour
         mainMenu.SetActive(false);
         paused = false;
         //playerUI.SetActive(true);
-        mainAudio = GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<AudioSource>();
-        dirLight = GameObject.FindGameObjectWithTag("DirectionalLight").GetComponent<Light>();
+        //mainAudio = GameObject.FindGameObjectWithTag("MenuMusic").GetComponent<AudioSource>();
+        //dirLight = GameObject.FindGameObjectWithTag("DirectionalLight").GetComponent<Light>();
         #region Set Up Keys
         //set up keys to the present keys that may be saved, else set the keys to default
         forward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Forward", "W"));
@@ -59,12 +59,14 @@ public class PausedMenu : MonoBehaviour
     }
     public void ExitGame()
     {
-        #if UNITY_EDITOR
+        #region Quit
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         //Will only exit if in Unity Editor
-        #endif
+#endif
         Application.Quit();
         //Exit built application
+        #endregion
     }
 
     public void ToggleOptions()
@@ -91,15 +93,15 @@ public class PausedMenu : MonoBehaviour
             optionsMenu.SetActive(true);
             volumeSlider = GameObject.FindGameObjectWithTag("VolumeSlider").GetComponent<Slider>();
 
-            volumeSlider.value = mainAudio.volume;
+            //volumeSlider.value = mainAudio.volume;
 
-            brightnessSlider = GameObject.FindGameObjectWithTag("BrightnessSlider").GetComponent<Slider>();
+            //brightnessSlider = GameObject.FindGameObjectWithTag("BrightnessSlider").GetComponent<Slider>();
 
-            brightnessSlider.value = dirLight.intensity;
+            //brightnessSlider.value = dirLight.intensity;
 
-            ambientSlider = GameObject.FindGameObjectWithTag("AmbientSlider").GetComponent<Slider>();
+            //ambientSlider = GameObject.FindGameObjectWithTag("AmbientSlider").GetComponent<Slider>();
 
-            ambientSlider.value = RenderSettings.ambientIntensity;
+            //ambientSlider.value = RenderSettings.ambientIntensity;
 
             resolutionDropdown = GameObject.Find("ResolutionDropdown").GetComponent<Dropdown>();
             return false;
@@ -183,24 +185,40 @@ public class PausedMenu : MonoBehaviour
         mainMenu.SetActive(false);
         Time.timeScale = 1;
     }
-    void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (paused)
-            {
-                Time.timeScale = 1;
-                mainMenu.SetActive(false);
-                //playerUI.SetActive(true);
-                paused = false;
-            }
-            else
-            {
-                Time.timeScale = 0;
-                mainMenu.SetActive(true);
-                //playerUI.SetActive(false);
-                paused = true;
-            }
+            TogglePause();
+
+        }
+
+    }
+    public void TogglePause()
+    {
+        if (paused && !showOptions && !Inventory.showInv)
+        {
+            Time.timeScale = 1;
+            paused = false;
+            mainMenu.SetActive(false);
+        }
+        else if (paused && showOptions)
+        {
+            ToggleOptions();
+            mainMenu.SetActive(true);
+        }
+        else if (!paused && !showOptions && Inventory.showInv)
+        {
+            Inventory.showInv = false;
+            Time.timeScale = 1;
+            paused = false;
+            mainMenu.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            paused = true;
+            mainMenu.SetActive(true);
         }
     }
 }

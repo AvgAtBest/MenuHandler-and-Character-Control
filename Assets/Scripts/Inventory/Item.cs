@@ -133,5 +133,6 @@ public enum ItemTypes
     Weapon,
     Craftable,
     Money,
-    Quest
+    Quest,
+    Misc
 }
