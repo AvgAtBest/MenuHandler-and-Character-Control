@@ -18,8 +18,8 @@ public class CharacterHandler : MonoBehaviour
     [Header("Health")]
     #region Health
     //max and min health
-    public float maxHealth;
-    public float curHealth;
+    public static float maxHealth;
+    public static float curHealth;
     public GUIStyle healthBar;
     public GUIStyle healthColor;
     public bool isDead;

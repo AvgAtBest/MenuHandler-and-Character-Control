@@ -36,10 +36,10 @@ public class Enemy : MonoBehaviour
         timer += Time.deltaTime;
         distToTarget = Vector3.Distance(transform.position, player.position);
 
-        if (pHealth.curHealth > 0)
+        if (CharacterHandler.curHealth > 0)
         {
             agent.SetDestination(player.position);
-            if (distToTarget < attackRadius && timer >= timeBetweenAttacks && pHealth.curHealth > 0)
+            if (distToTarget < attackRadius && timer >= timeBetweenAttacks && CharacterHandler.curHealth > 0)
             {
                 Attack();
             }

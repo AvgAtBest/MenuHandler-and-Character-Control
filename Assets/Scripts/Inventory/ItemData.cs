@@ -219,7 +219,7 @@ public static class ItemData
             Armour = armour,
             Amount = amount,
             Heal = heal,
-            Icon = Resources.Load("Icon/" + icon) as Texture2D,
+            Icon = Resources.Load("Icons/" + icon) as Texture2D,
             Mesh = meshName,
             Type = type,
         };

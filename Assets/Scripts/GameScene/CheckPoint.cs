@@ -29,11 +29,11 @@ public class CheckPoint : MonoBehaviour
     private void LateUpdate()
     {
         //if our characters health is less than or equal to 0
-        if (charH.curHealth <= 0)
+        if (CharacterHandler.curHealth <= 0)
         {
             transform.position = curCheckpoint.transform.position;
             //our transform.position is equal to that of the checkpoint
-            charH.curHealth = charH.maxHealth;
+            CharacterHandler.curHealth = CharacterHandler.maxHealth;
             //our characters health is equal to full health
             charH.alive = true;
             //character is alive
