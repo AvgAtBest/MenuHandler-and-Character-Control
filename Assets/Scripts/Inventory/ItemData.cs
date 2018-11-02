@@ -28,7 +28,7 @@ public static class ItemData
                 heal = 10;
                 icon = "apple";
                 meshName = "Apple_Mesh";
-                type = ItemTypes.Cosumables;
+                type = ItemTypes.Consumables;
                 break;
             case 1:
                 name = "Cheese";
@@ -40,7 +40,7 @@ public static class ItemData
                 heal = 10;
                 icon = "I_C_Cheese";
                 meshName = "Cheese_Mesh";
-                type = ItemTypes.Cosumables;
+                type = ItemTypes.Consumables;
                 break;
             case 2:
                 name = "Health Vial";
@@ -52,7 +52,7 @@ public static class ItemData
                 heal = 75;
                 icon = "hp";
                 meshName = "HP_Mesh";
-                type = ItemTypes.Cosumables;
+                type = ItemTypes.Consumables;
                 break;
             #endregion
             #region Armour 100-199
@@ -71,7 +71,7 @@ public static class ItemData
             case 101:
                 name = "Cinderblock Armour";
                 value = 100;
-                description = "Becoming resourceful in a apocalypse is a good thing. Strapping cinderblocks to yourself as a form of armour is not a sign of resourcefulness.";
+                description = "Becoming resourceful in a apocalypse is a good thing. \nStrapping cinderblocks to yourself as a form of armour is not \na sign of resourcefulness.";
                 damage = 0;
                 armour = 250;
                 amount = 1;
@@ -97,14 +97,14 @@ public static class ItemData
             case 200:
                 name = "Freedom";
                 value = 200;
-                description = "Contrary to popular belief, the Freedom pistol is not free. The cost for its development skyrocketed into the millions, ultimately resulting in company closure.";
+                description = "Contrary to popular belief, the Freedom pistol is not free. \nThe cost for its development skyrocketed into the millions, \nultimately resulting in company closure.";
                 damage = 150;
                 armour = 0;
                 amount = 1;
                 heal = 0;
                 icon = "W_Gun003";
                 meshName = "Freedom_Mesh";
-                type = ItemTypes.Weapon;
+                type = ItemTypes.Weapons;
                 break;
             case 201:
                 name = "Spoon Knife";
@@ -116,26 +116,26 @@ public static class ItemData
                 heal = 0;
                 icon = "sword";
                 meshName = "Sword_Mesh";
-                type = ItemTypes.Weapon;
+                type = ItemTypes.Weapons;
                 break;
             case 202:
                 name = "Axe";
                 value = 125;
-                description = "Honestly. Why have anyother type of melee weapon in a zombie apocalypse when you have a axe?";
+                description = "Honestly. Why have anyother type of melee weapon in a \nzombie apocalypse when you have a axe?";
                 damage = 25;
                 armour = 0;
                 amount = 1;
                 heal = 0;
                 icon = "axe";
                 meshName = "Axe_Mesh";
-                type = ItemTypes.Weapon;
+                type = ItemTypes.Weapons;
                 break;
             #endregion
             #region Craftables 300 - 399
             case 300:
                 name = "Stone";
                 value = 2;
-                description = "Used to craft rudimentary weapons. Or you can sharpen another stone to make a sharp stone.";
+                description = "Used to craft rudimentary Weapons. \nOr you can sharpen another stone to make a sharp stone.";
                 damage = 0;
                 armour = 0;
                 amount = 1;

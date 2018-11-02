@@ -128,9 +128,9 @@ public class Item
 }
 public enum ItemTypes
 {
-    Cosumables,
+    Consumables,
     Armour,
-    Weapon,
+    Weapons,
     Craftable,
     Money,
     Quest,

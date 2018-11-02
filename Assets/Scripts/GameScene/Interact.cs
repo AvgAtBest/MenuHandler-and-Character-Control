@@ -13,8 +13,8 @@ public class Interact : MonoBehaviour
 	void Start ()
     {
         //Set Cursor lock state to locked
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         player = GameObject.FindGameObjectWithTag("Player");
         mainCam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -70,6 +70,11 @@ public class Interact : MonoBehaviour
                 if (hitInfo.collider.CompareTag("Item"))
                 {
                     Debug.Log("Pick up Item");
+                    ItemHandler handler = hitInfo.transform.GetComponent<ItemHandler>();
+                    if (handler != null)
+                    {
+                        handler.OnCollection();
+                    }
                 }
                 #endregion
             }

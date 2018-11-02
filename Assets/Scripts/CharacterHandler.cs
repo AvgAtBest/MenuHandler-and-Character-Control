@@ -145,7 +145,7 @@ public class CharacterHandler : MonoBehaviour
         //scrH - 9
         float scrH = Screen.height / 9;
 
-        if (!PausedMenu.paused)
+        if (!PausedMenu.paused && !Inventory.showInv)
         {
             //GUI Box on screen for the healthbar background
             GUI.Box(new Rect(6 * scrW, 0.25f * scrH, 4 * scrW, 0.5f * scrH), "");
@@ -179,7 +179,6 @@ public class CharacterHandler : MonoBehaviour
         if (enemyH.maxHealth < 0)
         {
             GainEXP();
-
         }
     }
     public void GainEXP()
