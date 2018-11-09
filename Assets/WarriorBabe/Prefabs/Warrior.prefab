@@ -431,6 +431,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1748897601118490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4685703546077688}
+  m_Layer: 0
+  m_Name: DropLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1792164291133616
 GameObject:
   m_ObjectHideFlags: 1
@@ -668,7 +683,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1414426663592044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.51, y: 1.69, z: -2.93}
+  m_LocalPosition: {x: 0.02, y: 1.69, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4521948094287590}
@@ -695,13 +710,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1722300329157138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4499998, y: 0.24, z: 4.17}
+  m_LocalPosition: {x: 2.61, y: 0, z: 3.8613875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4583001474840886}
   - {fileID: 4386645556651590}
   - {fileID: 4418048719987550}
   - {fileID: 4455788154400136}
+  - {fileID: 4685703546077688}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -818,6 +834,19 @@ Transform:
   - {fileID: 4813302514753538}
   m_Father: {fileID: 4583001474840886}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4685703546077688
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1748897601118490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.65, z: 1.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4521948094287590}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4779131967743714
 Transform:
@@ -1224,6 +1253,12 @@ MonoBehaviour:
   scr: {x: 0, y: 0}
   scrollPos: {x: 0, y: 0}
   sortType: All
+  equippedLocation:
+  - {fileID: 0}
+  - {fileID: 0}
+  dropLocation: {fileID: 4685703546077688}
+  curWeapon: {fileID: 0}
+  curArmour: {fileID: 0}
 --- !u!114 &114592955338453032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1436,7 +1471,7 @@ MonoBehaviour:
   speed: 10
   stamina: 0
   staminaMax: 100
-  currentState: 1
+  currentState: 0
   sensitivityX: 10
   sensitivityY: 10
   minimumY: -60

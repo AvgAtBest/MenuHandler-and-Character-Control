@@ -220,7 +220,7 @@ public static class ItemData
             Amount = amount,
             Heal = heal,
             Icon = Resources.Load("Icons/" + icon) as Texture2D,
-            Mesh = meshName,
+            MeshName = meshName,
             Type = type,
         };
         return temp;

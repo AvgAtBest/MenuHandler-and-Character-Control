@@ -104,7 +104,7 @@ public class Item
     }
     #endregion
     #region Mesh
-    public string Mesh
+    public string MeshName
     {
         get { return _mesh; }
         set { _mesh = value; }

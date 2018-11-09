@@ -10,15 +10,24 @@ public class Inventory : MonoBehaviour
     public Item selectedItem;//the item that is selected
     public static int money;//currency
 
+
     public Vector2 scr = Vector2.zero;//screen width and height 16:9
     public Vector2 scrollPos = Vector2.zero;//scrollbar position for inventory list
-
     public string sortType = "All";
+
+    //0 = RightHand // Weapon
+    //1 = head // Helmet
+    public Transform[] equippedLocation;
+    public Transform dropLocation;
+    public GameObject curWeapon;
+    public GameObject curArmour;
     #endregion
 
     void Start()
     {
+        inv.Add(ItemData.CreateItem(0));
         inv.Add(ItemData.CreateItem(2));
+        inv.Add(ItemData.CreateItem(100));
         inv.Add(ItemData.CreateItem(101));
         inv.Add(ItemData.CreateItem(200));
         inv.Add(ItemData.CreateItem(202));
@@ -136,7 +145,31 @@ public class Inventory : MonoBehaviour
                 if (selectedItem != null)
                 {
                     GUI.DrawTexture(new Rect(11 * scr.x, 1.5f * scr.y, 2 * scr.x, 2 * scr.y), selectedItem.Icon);
+                    if (GUI.Button(new Rect(14 * scr.x, 8.75f * scr.y, scr.x, 0.5f * scr.y), "Discard"))
+                    {
+                        if (curWeapon != null && selectedItem.MeshName == curWeapon.name)
+                        {
+                            Destroy(curWeapon);
 
+                        }
+                        else if (curArmour != null && selectedItem.MeshName == curArmour.name)
+                        {
+                            Destroy(curArmour);
+                        }
+                        GameObject clone = Instantiate(Resources.Load("Prefab/" + selectedItem.MeshName) as GameObject, dropLocation.position, Quaternion.identity);
+                        clone.AddComponent<Rigidbody>().useGravity = true;
+                        //dropLocation.transform.SetParent(null);
+                        if (selectedItem.Amount > 1)
+                        {
+                            selectedItem.Amount--;
+                        }
+                        else
+                        {
+                            inv.Remove(selectedItem);
+                            selectedItem = null;
+                        }
+                        return;
+                    }
                     switch (selectedItem.Type)
                     {
                         case ItemTypes.Armour:
@@ -168,20 +201,6 @@ public class Inventory : MonoBehaviour
                                     return;
                                 }
                             }
-
-                            if (GUI.Button(new Rect(14 * scr.x, 8.75f * scr.y, scr.x, 0.5f * scr.y), "Discard"))
-                            {
-                                if (selectedItem.Amount > 1)
-                                {
-                                    selectedItem.Amount--;
-                                }
-                                else
-                                {
-                                    inv.Remove(selectedItem);
-                                    selectedItem = null;
-                                }
-                                return;
-                            }
                             break;
                         case ItemTypes.Craftable:
                             GUI.Box(new Rect(8 * scr.x, 5 * scr.y, 8 * scr.x, 3 * scr.y), selectedItem.Name + "\n" + selectedItem.Description + "\nValue:"
@@ -194,9 +213,19 @@ public class Inventory : MonoBehaviour
                         case ItemTypes.Weapons:
                             GUI.Box(new Rect(8 * scr.x, 5 * scr.y, 8 * scr.x, 3 * scr.y), selectedItem.Name + "\n" + selectedItem.Description + "\nValue:"
                                 + selectedItem.Value + "\nWeapon: " + selectedItem.Damage);
-                            if (GUI.Button(new Rect(15 * scr.x, 8.75f * scr.y, scr.x, 0.5f * scr.y), "Equip"))
+                            if (curWeapon == null || selectedItem.MeshName != curWeapon.name)
                             {
-                                //equip weapon
+                                if (GUI.Button(new Rect(15 * scr.x, 8.75f * scr.y, scr.x, 0.5f * scr.y), "Equip"))
+                                {
+                                    if (curWeapon != null)
+                                    {
+                                        Destroy(curWeapon);
+                                    }
+                                    //equip weapon
+                                    curWeapon = Instantiate(Resources.Load("Prefab/" + selectedItem.MeshName) as GameObject, equippedLocation[0]);
+                                    curWeapon.GetComponent<ItemHandler>().enabled = false;
+                                    curWeapon.name = selectedItem.MeshName;
+                                }
                             }
                             break;
                         case ItemTypes.Quest:
@@ -311,7 +340,7 @@ public class Inventory : MonoBehaviour
                 //can we see the horizontal bar (false) and if we can see the vertical bar (true)
 
                 scrollPos = GUI.BeginScrollView(new Rect(0, 0.25f * scr.y, 3.75f * scr.x, 8.75f * scr.y), scrollPos, new Rect(0, 0, 0, 9f * scr.y + ((inv.Count - 17) * (0.5f * scr.y))), false, true);
-                
+
                 #region Items in viewing Area
                 for (int i = 0; i < inv.Count; i++)
                 {
