@@ -77,6 +77,8 @@ public class Inventory : MonoBehaviour
         {
             //then it is false
             showInv = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             //time unfreezes in game
             Time.timeScale = 1;
             return (false);
@@ -85,6 +87,8 @@ public class Inventory : MonoBehaviour
         {
             //inventory is then showing
             showInv = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             //time freezes game
             Time.timeScale = 0;
             return (true);
