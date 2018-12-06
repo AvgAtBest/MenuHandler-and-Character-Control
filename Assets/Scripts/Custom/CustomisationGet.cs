@@ -23,7 +23,7 @@ public class CustomisationGet : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("CharacterName"))
         {
-            SceneManager.LoadScene(1);
+          //  SceneManager.LoadScene(1);
 
         }
         SetTexture("Skin", PlayerPrefs.GetInt("SkinIndex"));

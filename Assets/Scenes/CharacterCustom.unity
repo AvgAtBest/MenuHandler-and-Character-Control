@@ -153,6 +153,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114674125536781060, guid: da092843619c0514da120bbfe458d53b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414426663592044, guid: da092843619c0514da120bbfe458d53b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114891800716349406, guid: da092843619c0514da120bbfe458d53b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da092843619c0514da120bbfe458d53b, type: 2}
   m_IsPrefabAsset: 0
@@ -280,12 +294,15 @@ MonoBehaviour:
   clothesMax: 11
   armourMax: 11
   charName: Adventurer
-  str: 0
-  dex: 0
-  charisma: 0
-  con: 0
-  intel: 0
-  wis: 0
+  statArray:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  stats: 000000000000000000000000000000000000000000000000
+  tempStats: 000000000000000000000000000000000000000000000000
   points: 10
   charClass: 0
   selectedClass:
@@ -297,6 +314,7 @@ MonoBehaviour:
   - Ranger
   - Sorcerer
   - Warlock
+  selectedIndex: 0
 --- !u!4 &1991458718
 Transform:
   m_ObjectHideFlags: 0

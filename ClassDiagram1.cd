@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CharacterHandler" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAxCBAAaACIAAEEEAAAAIAAADJAcQAAEYgCAiIAQAoI=</HashCode>
+      <FileName>Assets\Scripts\CharacterHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CustomisationGet" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAAAAAAAAAAAAAgAiAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Custom\CustomisationGet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CustomisationSet" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEIAICQICAACAAEAIAIQgoAACSCgAAAJAigBAEQACA=</HashCode>
+      <FileName>Assets\Scripts\Custom\CustomisationSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dialogue" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACAAIAkBAAAAgAAAAAAAAAAQAACgAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Dialogue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterMovement" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAADgEBiAAAQEAYACAAQCAAAAAEQAAAAAAAAAAIBA=</HashCode>
+      <FileName>Assets\Scripts\GameScene\CharacterMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CheckPoint" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKAAAAAAAAAAIAAgAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameScene\CheckPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAIAQAAgQEEAAAAAAAAAIAQQAABQgAAiAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\GameScene\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Interact" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAAACAAAAAAAAAAAAAAAAAAAAABAEAQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameScene\Interact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pause" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAABAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Assets\Scripts\GameScene\Menu\Pause.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PausedMenu" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCYCgpABACiBkAgEAAKhQAACAABrECAAAAKACEoBoIc=</HashCode>
+      <FileName>Assets\Scripts\GameScene\Menu\PausedMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DragAndDropInv" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhQAAkAIACAIACAQAUAAAAAAgAAAWIACACCQQAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\Inventory\DragAndDropInv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwAIgAAACAAACAICAAAAAQAAAAACAAAEACAAgAQEAA=</HashCode>
+      <FileName>Assets\Scripts\Inventory\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACIADAABAgAASEAAhAAASAgAAAAACAAQBgABEAAAA=</HashCode>
+      <FileName>Assets\Scripts\Inventory\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemData" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Inventory\ItemData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemHandler" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAQAAAAAAAAAAgAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Inventory\ItemHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuHandler" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCICgpABACiBkAgEAAKhQAACAABpECAAAAKACEIBgIc=</HashCode>
+      <FileName>Assets\Scripts\MenuHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MouseLook" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAABAEACAAAAAAAAGAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\MouseLook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TimedClock" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAAAAAAIAACAAAAAgAA=</HashCode>
+      <FileName>Assets\Scripts\TimedClock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CharacterClass" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAMAIAAACAAAABAAAAAAAACAAAAEAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Scripts\Custom\CustomisationSet.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ItemTypes" Collapsed="true">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAAAAgAAAAAAoAAAAAAAAAAAAAACAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Inventory\Item.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
